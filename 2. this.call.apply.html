@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div id="div">
+    I'm a Div
+  </div>
+
+  <script type="text/javascript">
+    window.id = "window";
+
+    // document也是一个对象,所以调用this.id可以返回正确的div
+    // 因为这是调用对象属性的方式来调用this
+    document.getElementById('div').onclick = function() {
+      console.log(this.id)
+      var callback = function() {
+        console.log(this.id) //div
+      }
+      // 之所以会这样，是因为调用时候，函数是在全局对象上调用的，所以this指向window。
+      callback() // window
+    }
+  </script>
+</body>
+</html>
