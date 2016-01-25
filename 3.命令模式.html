@@ -1,10 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>命令模式</title>
 </head>
+
 <body>
-  
+  <button id="execute">执行命令</button>
+  <button id="undo">撤销命令</button>
+  <script type="text/javascript">
+  var Tv = {
+    open: function() {
+      console.log('Open Tv')
+    },
+    close: function() {
+      console.log('Close Tv')
+    }
+  };
+
+  // var openTvCommand = function(receiver) {
+  //   this.receiver = receiver;
+  // };
+
+  // openTvCommand.prototype.execute = function() {
+  //   this.receiver.open();
+  // };
+
+  // openTvCommand.prototype.undo = function() {
+  //   this.receiver.close();
+  // };
+
+  var createCommand = function(receiver) {
+    var execute = function() {
+      return receiver.open();
+    };
+
+    var undo = function() {
+      return receiver.close();
+    };
+
+    return {
+      execute: execute,
+      undo: undo
+    }
+  };
+
+  var setCommand = function(command) {
+    document.getElementById('execute').onclick = function() {
+      command.execute();
+    };
+
+    document.getElementById('undo').onclick = function() {
+      command.undo();
+    }
+  };
+
+  // setCommand(new openTvCommand(Tv));
+  setCommand(createCommand(Tv));
+  </script>
 </body>
+
 </html>

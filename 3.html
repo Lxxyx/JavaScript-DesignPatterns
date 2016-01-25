@@ -62,11 +62,28 @@
       // 
       // apply则可以把参数以数组的方式传进去，这个函数接到参数后会自动解包成变量
       // 这样arguments就等于传入的arguments。
-      return cache[args] = caculate.apply(null,arguments);
+      return cache[args] = caculate.apply(null, arguments);
     }
   }();
 
   mult(2, 5)
+
+
+  var appendDiv = function(callback) {
+    for (var i = 0; i < 100; i++) {
+      var div = document.createElement('div');
+      div.innerHTML = i;
+      document.body.appendChild(div);
+
+      if (typeof callback === 'function') {
+        callback(div)
+      }
+
+    }
+  };
+  appendDiv(function(node) {
+    node.style.display = 'none';
+  })
   </script>
 </body>
 
