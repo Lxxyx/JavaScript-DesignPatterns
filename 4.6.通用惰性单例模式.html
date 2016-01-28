@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="div1"></div>
+  <button id="loginBtn">登录</button>
+  <script type="text/javascript">
+  var getSingle = function(fn) {
+    var result;
+    return function() {
+      return result || (result = fn.apply(this, arguments))
+    }
+  };
+
+  var createLoginLayer = function() {
+    var div = document.createElement('div');
+    div.innerHTML = '我是登录浮窗';
+    div.style.display = 'none';
+    document.body.appendChild(div);
+    return div;
+  };
+
+  var createSingleLayer = getSingle(createLoginLayer);
+
+  document.getElementById('loginBtn').onclick = function() {
+    var loginLayer = createSingleLayer();
+    loginLayer.style.display = 'block';
+  }
+
+  var bindEvent = getSingle(function() {
+    console.log('Start Bind')
+    document.getElementById('div1').onclick = function() {
+      console.log('BindClick')
+    }
+    return true;
+  });
+
+  var render = function() {
+    console.log('Start render');
+    bindEvent();
+  };
+
+  render();
+  render();
+  render();
+  </script>
+</body>
+
+</html>

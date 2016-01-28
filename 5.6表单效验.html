@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <form id="registerForm">
+    请输入用户名：
+    <input type="text" name="userName"></input>
+    请输入密码：
+    <input type="password" name="password"></input>
+    请输入手机号码：
+    <input type="text" name="phoneNumber"></input>
+    <button>提交</button>
+  </form>
+  <script type="text/javascript">
+  var strategies = {
+    isNonEmpty: function(value, errorMsg) {
+      if (value === '') {
+        return errorMsg;
+      }
+    },
+    minLength: function(value, length, errorMsg) {
+      if (value.length < length) {
+        return errorMsg;
+      }
+    },
+    isMobile: function(value, errorMsg) {
+      if (/\d{3}-\d{8}|\d{4}-\{7,8}/.test(value)) {
+        return errorMsg;
+      }
+    }
+  };
+
+  var validataFunc = function() {
+    var validator = new Validator();
+
+    validator.add(registerForm.userName, 'isNonEmpty', '用户名不能为空');
+
+    var errorMsg = validator.start();
+    return errorMsg;
+  }
+
+  var Validator = function() {
+    this.cache = {};
+  };
+
+  Validator.prototype.add = function(dom, rule, errorMsg) {
+    var ary = rule.split(':');
+    this.cache.push(function() {
+      var strategy = ary.shift();
+      ary.unshift(dom.value);
+      ary.push(errorMsg);
+
+      return strategies[strategy].apply(dom, ary);
+    });
+  };
+
+  Validator.prototype.start = function() {
+    for (var i = 0, validatorFunc; validataFunc = this.cache[i++];) {
+      var msg = validatorFunc();
+      if (msg) {
+        return msg;
+      }
+    }
+  };
+  </script>
+</body>
+
+</html>

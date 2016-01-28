@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="text/javascript">
+  var CreateDiv = (function() {
+    var instance;
+
+    var CreateDiv = function(html) {
+      if (instance) {
+        console.log(instance)
+        return instance;
+      }
+
+      this.html = html;
+      this.init();
+
+      return instance = this;
+    };
+
+    CreateDiv.prototype.init = function() {
+      var div = document.createElement('div');
+      div.innerHTML = this.html;
+      // 直接在body上用，会出错
+      var app = document.getElementById('app');
+      app.appendChild(div)
+    };
+
+    return CreateDiv;
+  })();
+
+  var a = new CreateDiv('Lxxyx')
+  var b = new CreateDiv('Ftd')
+
+  var MyApp = {};
+
+  MyApp.namespace = function(name) {
+    var parts = name.split('.');
+    var current = MyApp;
+
+    for (var i in parts) {
+      if (!current[parts[i]]) {
+        current[parts[i]] = {}
+      }
+      current = current[parts[i]]
+    }
+  };
+
+  MyApp.namespace('event.getName')
+  </script>
+</body>
+
+</html>
