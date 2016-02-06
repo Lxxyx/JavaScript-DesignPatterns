@@ -59,13 +59,13 @@ theName();
 var myClass = function() {
   this.name = "Lxxyx";
   // 加入return时，则返回的是别的对象。this不起作用。
-  // return {
-  //   name:"Return"
-  // }
+  return {
+    name:"ReturnOthers"
+  }
 };
 
 var obj = new myClass();
-obj.name; // Lxxyx
+console.log(obj.name); // ReturnOthers
 
 /**
  * 4.call,apply调用
@@ -155,8 +155,7 @@ b.getName(); // Lxxyx
 
 (function(a, b) {
   console.log(arguments) // 1,2
-    // apply必须用类数组的方式
-    // 且调用时候要加上prototype
+  // 调用Array的原型方法
   Array.prototype.push.call(arguments, 3);
   console.log(arguments) // 1,2,3
-});
+})(1,2)
