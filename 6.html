@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="myButton">Hello</button>
+  <script type="text/javascript">
+  var button  = document.getElementById('myButton');
+ button.onclick = function() {
+  console.log(123)
+ }
+
+
+  var myImage = (function() {
+    var imgNode = document.createElement('img');
+    document.body.appendChild(imgNode);
+
+    return {
+      setSrc: function(src) {
+        imgNode.src = src;
+      }
+    };
+  })();
+
+  var proxyImage = (function() {
+    var img = new Image();
+    img.onload = function() {
+      myImage.setSrc(this.src);
+    }
+
+    return {
+      setSrc: function(src) {
+        myImage.setSrc('./loading.gif');
+        // 这句话使网页开始下载img文件，下载完成调用onload
+        img.src = src;
+      }
+    }
+  })();
+
+  proxyImage.setSrc('https://img.alicdn.com/tps/TB1NL4ELFXXXXcgXFXXXXXXXXXX-1190-90.png')
+
+  </script>
+</body>
+
+</html>

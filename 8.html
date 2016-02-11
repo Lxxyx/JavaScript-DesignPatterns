@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>8</title>
+</head>
+
+<body>
+  <button value="hello" id="bubble">bubble</button>
+  <button id="capture">capture</button>
+  <script type="text/javascript">
+  var EventUtil = {
+    addEvent: function(element, event, fn) {
+      if (element.addEventListener) {
+        element.addEventListener(event, fn);
+      } else if (element.attachEvent) {
+        element.attachEvent('on' + event, fn);
+      } else {
+        // event = 'on' + event;
+        // element.event = fn;
+        // 因为element是个对象
+        // 所以可以用方括号法来访问对象。算是语法糖
+        element['on'+event] = fn;
+      }
+    },
+    removeEvent: function(element, event, fn) {
+      if (element.removeEventListener) {
+        element.removeEventListener(event, fn);
+      } else if (element.detachEvent) {
+        element.detachEvent('on' + event, fn);
+      } else {
+        // event = 'on' + event;
+        // element.event = null;
+        element['on',event] = null;
+      }
+    }
+  };
+
+  var bubble = document.getElementById('bubble');
+  EventUtil.addEvent(bubble, 'click', function() {
+    console.log(123)
+  })
+  </script>
+</body>
+
+</html>
