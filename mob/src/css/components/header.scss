@@ -1,0 +1,49 @@
+header {
+  background-color: #333333;
+  padding: 30px 45px;
+  overflow: hidden;
+  color: #fff;
+}
+
+.qrcode {
+  float: left;
+  margin: 0;
+  img {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+.title {
+  float: right;
+  text-align: right;
+  h1 {
+    padding: 5px 0;
+    margin: 5px 0;
+    font-size: 72px;
+    line-height: 1;
+  }
+  h2 {
+    margin: 5px 0;
+    padding: 5px 6px;
+    font-size: 20.8px;
+    font-weight: 400;
+  }
+}
+
+.contacts {
+  float: left;
+  padding-left: 16px;
+  font-size: 18px;
+  li {
+    line-height: 1.4;
+  }
+  a {
+    color:#fff;
+    text-decoration: none;
+    transition: 0.3s ease-out;
+    &:hover {
+      color: #a3d3d1;
+    }
+  }
+}

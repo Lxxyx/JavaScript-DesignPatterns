@@ -1,0 +1,31 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot'); /* IE9*/
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  /*font-size:16px;*/
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-weibo:before { content: "\e600"; }
+.icon-mail:before { content: "\e602"; }
+.icon-chat:before { content: "\e605"; }
+.icon-star:before { content: "\e606"; }
+.icon-wechat:before { content: "\e601"; }
+.icon-book:before { content: "\e607"; }
+.icon-gears:before { content: "\e608"; }
+.icon-cloud:before { content: "\e609"; }
+.icon-gear:before { content: "\e60a"; }
+.icon-rocket:before { content: "\e60b"; }
+.icon-iconfontfisocialgithub:before { content: "\e603"; }
+.icon-footerblog:before { content: "\e604"; }
+.icon-bag:before { content: "\e60c"; }
+.icon-wrench:before { content: "\e60d"; }
